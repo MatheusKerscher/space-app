@@ -16,6 +16,7 @@ html {
   line-height: 1.15; 
   -webkit-text-size-adjust: 100%; 
   font-family: GandhiSansRegular;
+  box-sizing: border-box;
 }
 body {
   margin: 0;
