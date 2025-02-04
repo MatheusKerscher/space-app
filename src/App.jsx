@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 import GlobalStyles from "./components/GlobalStyles/index.jsx"
 import Header from "./components/Header/index.jsx"
+import Sidebar from "./components/Sidebar/index.jsx"
 
 function App() {
   const GradientBackground = styled.div`
@@ -17,6 +18,8 @@ function App() {
       <GlobalStyles/>
 
       <Header />
+
+      <Sidebar />
     </GradientBackground>
   )
 }

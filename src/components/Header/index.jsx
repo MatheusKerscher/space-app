@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import TextField from "../TextField"
 
 const StyledHeader = styled.header`
     padding: 60px 0;
@@ -17,6 +18,8 @@ const Header = () => {
                 src="/images/logo.png"
                 alt="Logo Space App"
             />
+
+            <TextField />
         </StyledHeader>
     )
 }
