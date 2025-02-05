@@ -1,45 +1,79 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import GlobalStyles from "./components/GlobalStyles/index.jsx";
 import Header from "./components/Header/index.jsx";
 import Sidebar from "./components/Sidebar/index.jsx";
 import Banner from "./components/Banner/index.jsx";
-import bannerImage from './assets/banner.png'
+import bannerImage from "./assets/banner.png";
+import Gallery from "./components/Gallery/index.jsx";
 
+import pictureList from "./pictures.json";
+
+const StyledGradientBackground = styled.div`
+  background: linear-gradient(
+    174.61deg,
+    #041833 4.16%,
+    #04244f 48%,
+    #154580 96.76%
+  );
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+`;
+
+const StyledAppContainer = styled.div`
+  width: 1440px;
+  margin: 0 auto;
+  max-width: 100%;
+`;
+
+const StyledMainContainer = styled.main`
+  display: flex;
+  gap: 24px;
+`;
+
+const StyledGallerySection = styled.section`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
 function App() {
-  const StyledGradientBackground = styled.div`
-    background: linear-gradient(
-      174.61deg,
-      #041833 4.16%,
-      #04244f 48%,
-      #154580 96.76%
-    );
-    width: 100%;
-    min-height: 100vh;
-    padding: 0 24px;
-    box-sizing: border-box;
-  `;
+  const [pictures, setPictures] = useState(pictureList);
+  const [currentTagId, setCurrentTagId] = useState(0);
 
-  const StyledMainContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    gap: 24px;
-  `;
+  useEffect(() => {
+    if (currentTagId === 0) {
+      setPictures(pictureList);
+    } else {
+      setPictures(pictureList.filter(p => p.tagId === currentTagId))
+    }
+  }, [currentTagId]);
 
   return (
     <StyledGradientBackground>
       <GlobalStyles />
 
-      <Header />
+      <StyledAppContainer>
+        <Header />
 
-      <StyledMainContainer>
-        <Sidebar />
+        <StyledMainContainer>
+          <Sidebar />
 
-        <Banner 
-          title="A galeria mais completa de fotos do espaço!"
-          backgroundImage={bannerImage}
-        />
-      </StyledMainContainer>
+          <StyledGallerySection>
+            <Banner
+              title="A galeria mais completa de fotos do espaço!"
+              backgroundImage={bannerImage}
+            />
+
+            <Gallery
+              pictures={pictures}
+              currentTagId={currentTagId}
+              setCurrentTagId={setCurrentTagId}
+            />
+          </StyledGallerySection>
+        </StyledMainContainer>
+      </StyledAppContainer>
     </StyledGradientBackground>
   );
 }
