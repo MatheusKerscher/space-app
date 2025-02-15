@@ -34,7 +34,7 @@ const StyledButtonTag = styled.button`
   }
 `;
 
-const Tags = ({ currentTagId, setCurrentTagId }) => {
+const Tags = ({ currentTagId, onChangeCurrentTagId }) => {
   return (
     <StyledTagsContainer>
       <StyledTagsTitle>Busque por tags:</StyledTagsTitle>
@@ -45,7 +45,7 @@ const Tags = ({ currentTagId, setCurrentTagId }) => {
             key={t.id}
             $currentTag={currentTagId === t.id}
             type="button"
-            onClick={(ev) => setCurrentTagId(t.id)}
+            onClick={() => onChangeCurrentTagId(t.id)}
           >
             {t.title}
           </StyledButtonTag>

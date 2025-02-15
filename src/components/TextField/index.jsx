@@ -37,10 +37,13 @@ const StyledSearchIcon = styled.img`
     height: 38px;
 `;
 
-const TextField = (props) => {
+const TextField = ({ onSearchPictureNameValue }) => {
     return(
         <StyledFieldContainer>
-            <StyledTextField placeholder="O que você quer procurar?" {...props}/>
+            <StyledTextField 
+                placeholder="O que você quer procurar?" 
+                onChange={ev => onSearchPictureNameValue(ev.target.value)}    
+            />
             
             <StyledSearchIcon src={searchIcon} alt="Ícone de lupa"/>
         </StyledFieldContainer>

@@ -16,14 +16,15 @@ const StyledFluidContainer = styled.section`
 const StyledPicturesContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 24px;
 `
 
-const Gallery = ({ pictures = [], currentTagId, setCurrentTagId }) => {
+const Gallery = ({ pictures = [], currentTagId, onChangeCurrentTagId, onSelectPicture }) => {
   return (
     <>
       <Tags 
         currentTagId={currentTagId}
-        setCurrentTagId={setCurrentTagId}
+        onChangeCurrentTagId={onChangeCurrentTagId}
       />
 
       <StyledGallerySection>
@@ -35,6 +36,7 @@ const Gallery = ({ pictures = [], currentTagId, setCurrentTagId }) => {
               <Picture 
                 key={p.id}
                 picture={p}
+                onSolicitedZoom={onSelectPicture}
               />
             ))}
           </StyledPicturesContainer>

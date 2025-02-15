@@ -11,7 +11,7 @@ const StyledHeader = styled.header`
     }
 `
 
-const Header = () => {
+const Header = ({ onSearchPictureNameValue }) => {
     return(
         <StyledHeader>
             <img 
@@ -19,7 +19,9 @@ const Header = () => {
                 alt="Logo Space App"
             />
 
-            <TextField />
+            <TextField 
+                onSearchPictureNameValue={onSearchPictureNameValue}
+            />
         </StyledHeader>
     )
 }

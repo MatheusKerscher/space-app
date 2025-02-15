@@ -9,6 +9,7 @@ import bannerImage from "./assets/banner.png";
 import Gallery from "./components/Gallery/index.jsx";
 
 import pictureList from "./pictures.json";
+import ZoomModal from "./components/ZoomModal/index.jsx";
 
 const StyledGradientBackground = styled.div`
   background: linear-gradient(
@@ -38,24 +39,40 @@ const StyledGallerySection = styled.section`
   flex-direction: column;
   flex-grow: 1;
 `;
+
 function App() {
   const [pictures, setPictures] = useState(pictureList);
   const [currentTagId, setCurrentTagId] = useState(0);
+  const [searchPictureNameValue, setSearchPictureNameValue] = useState('')
+  const [selectedPicture, setSelectedPicture] = useState(null)
 
   useEffect(() => {
-    if (currentTagId === 0) {
-      setPictures(pictureList);
-    } else {
-      setPictures(pictureList.filter(p => p.tagId === currentTagId))
+    let filteredPictures = pictureList
+    
+    if (currentTagId !== 0) {
+      filteredPictures = filteredPictures.filter(p => p.tagId === currentTagId)
     }
-  }, [currentTagId]);
+
+    if(searchPictureNameValue.length >= 3) {
+      filteredPictures = filteredPictures.filter(p => p.title.toLocaleLowerCase().includes(searchPictureNameValue.toLocaleLowerCase()))
+    }
+
+    setPictures(filteredPictures)
+
+  }, [currentTagId, searchPictureNameValue]);
+
+  useEffect(() => {
+    document.body.style.overflow = selectedPicture ? 'hidden' : '';
+  }, [selectedPicture])
 
   return (
     <StyledGradientBackground>
       <GlobalStyles />
 
       <StyledAppContainer>
-        <Header />
+        <Header 
+          onSearchPictureNameValue={value => setSearchPictureNameValue(value)}
+        />
 
         <StyledMainContainer>
           <Sidebar />
@@ -69,11 +86,17 @@ function App() {
             <Gallery
               pictures={pictures}
               currentTagId={currentTagId}
-              setCurrentTagId={setCurrentTagId}
+              onChangeCurrentTagId={tagId => setCurrentTagId(tagId)}
+              onSelectPicture={picture => setSelectedPicture(picture)}
             />
           </StyledGallerySection>
         </StyledMainContainer>
       </StyledAppContainer>
+
+      <ZoomModal 
+        picture={selectedPicture}
+        onCloseModal={() => setSelectedPicture(null)}
+      />
     </StyledGradientBackground>
   );
 }
