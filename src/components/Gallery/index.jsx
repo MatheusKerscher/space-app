@@ -19,7 +19,7 @@ const StyledPicturesContainer = styled.div`
   gap: 24px;
 `
 
-const Gallery = ({ pictures = [], currentTagId, onChangeCurrentTagId, onSelectPicture }) => {
+const Gallery = ({ pictures = [], currentTagId, onChangeCurrentTagId, onSelectPicture, onToggleFavorite }) => {
   return (
     <>
       <Tags 
@@ -37,6 +37,7 @@ const Gallery = ({ pictures = [], currentTagId, onChangeCurrentTagId, onSelectPi
                 key={p.id}
                 picture={p}
                 onSolicitedZoom={onSelectPicture}
+                onToggleFavorite={onToggleFavorite}
               />
             ))}
           </StyledPicturesContainer>

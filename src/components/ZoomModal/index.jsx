@@ -61,7 +61,7 @@ const StyledDialog = styled.dialog`
   }
 `;
 
-const ZoomModal = ({ picture, onCloseModal }) => {
+const ZoomModal = ({ picture, onCloseModal, onToggleFavorite }) => {
   return (
     <>
       {picture && (
@@ -77,7 +77,11 @@ const ZoomModal = ({ picture, onCloseModal }) => {
               <img src="/icons/close.png" alt="Ícone de expandir" />
             </ButtonIcon>
 
-            <Picture picture={picture} expanded />
+            <Picture 
+              picture={picture} 
+              expanded 
+              onToggleFavorite={onToggleFavorite}  
+            />
           </StyledDialog>
         </>
       )}

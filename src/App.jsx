@@ -62,8 +62,26 @@ function App() {
   }, [currentTagId, searchPictureNameValue]);
 
   useEffect(() => {
+    window.scrollTo({top: 0, behavior: 'smooth'})
     document.body.style.overflow = selectedPicture ? 'hidden' : '';
   }, [selectedPicture])
+
+  const onToggleFavorite = (pictureId) => {
+    if(pictureId === selectedPicture?.id) {
+      setSelectedPicture({
+        ...selectedPicture,
+        favorited: !selectedPicture.favorited
+      })
+    }
+
+    setPictures(pictures.map(p => {
+        return {
+          ...p,
+          favorited: p.id === pictureId ? !p.favorited : p.favorited
+        }
+      }
+    ))
+  }
 
   return (
     <StyledGradientBackground>
@@ -88,6 +106,7 @@ function App() {
               currentTagId={currentTagId}
               onChangeCurrentTagId={tagId => setCurrentTagId(tagId)}
               onSelectPicture={picture => setSelectedPicture(picture)}
+              onToggleFavorite={onToggleFavorite}
             />
           </StyledGallerySection>
         </StyledMainContainer>
@@ -96,6 +115,7 @@ function App() {
       <ZoomModal 
         picture={selectedPicture}
         onCloseModal={() => setSelectedPicture(null)}
+        onToggleFavorite={onToggleFavorite}
       />
     </StyledGradientBackground>
   );
