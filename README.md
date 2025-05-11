@@ -1,8 +1,41 @@
-# React + Vite
+# Space App
+Projeto com uma galeria de imagens do espaço, permitindo filtrar por categoria e/ou nome da foto, favoritar ela e abrir um modal para visualizar a imagem em tamanho aumentado
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Thumbnail-Cart](/thumbnail.png)
 
-Currently, two official plugins are available:
+## Instalação e Uso
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Esse projeto pode ser rodado localmente realizando o seguinte passo a passo:
+
+1. Instalar [Node.Js](https://nodejs.org/en) e NPM
+
+
+2. Clone esse repositório
+
+```sh
+git clone https://github.com/MatheusKerscher/space-app.git
+
+```
+
+3. Acesse a pasta
+
+```sh
+cd space-app
+
+```
+
+4. Instale os pacotes NPM
+
+```sh
+
+npm i
+
+```
+
+5. Executar o projeto
+
+```sh
+
+npm run dev
+
+```
